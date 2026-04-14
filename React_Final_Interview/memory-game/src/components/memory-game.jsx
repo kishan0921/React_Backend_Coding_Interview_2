@@ -57,7 +57,7 @@ const MemoryGame = () => {
     const totalCards = gridSize * gridSize; // 16
     
   // Total pairs nikal rahe hain
-  // Example: 16 cards → 8 pairs
+  // Example: 16 cards → 8 pairs and Math.floor(4.95) is 4
   const pairCount = Math.floor(totalCards / 2);
 
   // 1 se leke pairCount tak numbers ka array bana rahe hain
@@ -69,6 +69,21 @@ const MemoryGame = () => {
   const shuffledCards = [...numbers, ...numbers]
 
     // Random shuffle kar rahe hain taaki cards mix ho jaaye
+    /*
+      Step samjho:
+      Math.random() → random number deta hai (0 se 1 ke beech)
+      maan lo:
+      0.8 - 0.5 = +0.3 → order change ho sakta hai
+      0.2 - 0.5 = -0.3 → order same reh sakta hai
+
+      Ye comparison baar-baar hota hai har element ke liye
+      isliye array har baar different order me aa jaata hai
+
+      Possible outputs:
+      [3,1,4,2]
+      [2,4,1,3]
+      [4,3,2,1]
+      */
     .sort(() => Math.random() - 0.5)
 
     // Agar cards zyada ho gaye ho (odd grid case), to required length tak hi le rahe hain
@@ -83,13 +98,10 @@ const MemoryGame = () => {
 
   // Cards ko state me set kar rahe hain
   setCards(shuffledCards);
-
   // Abhi koi card flip nahi hua hai → empty array
   setFlipped([]);
-
   // Abhi koi pair solve nahi hua → empty array
   setSolved([]);
-
   // Game abhi jeeta nahi hai → false
   setWon(false);
 };
@@ -126,35 +138,79 @@ const checkMatch = (secondId) => {
   }
 };
 
-  const handleClick = (id) => {
-    if (disabled || won) return;
 
-    if (flipped.length === 0) {
-      setFlipped([id]);
-      return;
+
+// Ye function tab call hota hai jab user kisi card pe click karta hai
+const handleClick = (id) => {
+  // Agar game temporarily disabled hai ya already win ho chuka hai
+  // to kuch bhi mat karo (click ignore kar do)
+  if (disabled || won) return;
+
+  // Agar abhi tak koi bhi card flip nahi hua
+  if (flipped.length === 0) {
+    // To current card ko flipped list me daal do
+    setFlipped([id]);
+    // Aur function yahin stop kar do (2nd click ka wait karo)
+    return;
+  }
+
+
+  // Agar already 1 card flip ho chuka hai
+  if (flipped.length === 1) {
+    // Ab user ko temporarily disable kar rahe hain
+    // taaki wo extra clicks na kare jab tak check ho raha hai
+    setDisabled(true);
+    // Check karo ki user ne same card dobara click to nahi kiya
+    if (id !== flipped[0]) {
+      // Agar alag card hai to usko bhi flipped me add kar do
+      setFlipped([...flipped, id]);
+      // Ab dono cards compare karne ke liye match check function call karo
+      checkMatch(id);
+    } else {
+      // Agar user ne same card pe dobara click kar diya
+      // to flip reset kar do (ignore situation)
+      setFlipped([]);
+      // Aur disable hata do taaki user phir se click kar sake
+      setDisabled(false);
     }
+  }
+};
 
-    if (flipped.length === 1) {
-      setDisabled(true);
-      if (id !== flipped[0]) {
-        setFlipped([...flipped, id]);
-        // check match logic
-        checkMatch(id);
-      } else {
-        setFlipped([]);
-        setDisabled(false);
-      }
-    }
-  };
+      // Ye function check karta hai ki card flip hona chahiye ya nahi
+      // Card flip hoga agar:
+      // 1. User ne abhi usko click kiya hai (flipped array me hai)
+      // 2. Ya wo already match ho chuka hai (solved array me hai)
+      const isFlipped = (id) =>
+        flipped.includes(id) || solved.includes(id);
 
-  const isFlipped = (id) => flipped.includes(id) || solved.includes(id);
-  const isSolved = (id) => solved.includes(id);
 
-  useEffect(() => {
-    if (solved.length === cards.length && cards.length > 0) {
-      setWon(true);
-    }
-  }, [solved, cards]);
+      // Ye function check karta hai ki card already solve (match) ho chuka hai ya nahi
+      // Agar id solved array me mil gaya → matlab wo card permanently open rahega
+      const isSolved = (id) =>
+        solved.includes(id);
+
+
+      // Ye useEffect har baar chalega jab:
+      // - solved array change hoga
+      // - ya cards array change hoga
+      useEffect(() => {
+
+        // Yaha hum check kar rahe hain:
+        // kya saare cards solve ho gaye hain?
+
+        // solved.length === cards.length ka matlab:
+        // jitne total cards hain utne hi solved ho gaye → game complete
+
+        // cards.length > 0 isliye check kar rahe hain:
+        // taki empty array pe galti se win na ho jaye
+
+        if (solved.length === cards.length && cards.length > 0) {
+
+          // Agar sab solve ho gaye → game jeet gaye 🎉
+          setWon(true);
+        }
+
+      }, [solved, cards]); // dependency → jab bhi ye change honge, effect dubara chalega
 
   return (
 
@@ -164,7 +220,6 @@ const checkMatch = (secondId) => {
     //2. Grid Size Box  ({/* Game Board */})
     //3.Winner or loss message  ( {/* Result */})
     //4.Reset Game Button ( {/* Reset / Play Again Btn */})
-
 
 
     // Step 03:
