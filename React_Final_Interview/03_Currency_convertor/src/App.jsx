@@ -1,9 +1,14 @@
 import "./App.css";
-import MemoryGame from "./components/memory-game";
+import CurrencyConvertor from "./components/currency-convertor";
 
 function App() {
-  // Yaha pe humne apna, memory-game waala component render kr diya hu.
-  return <MemoryGame />;
+  return (
+    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center">
+      <div className="container">
+        <CurrencyConvertor />
+      </div>
+    </div>
+  );
 }
 
 export default App;
