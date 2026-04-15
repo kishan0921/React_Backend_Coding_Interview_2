@@ -1,0 +1,241 @@
+// ye appko time laagega smjhne me
+// video deko - 7:22:00 baar baar
+
+
+import React, { useCallback } from "react";
+//yaha functionality thoda extra h, useForm hum import krenge.
+import { useForm } from "react-hook-form";
+
+// then apna banaya component chahiye hoga like button, editor(RTE), input , Select
+import { Button, Input, RTE, Select } from "..";
+
+// appwrite ki service bhi lagegi  , kyuki actually appwrite ki data collect kregi.
+import appwriteService from "../../appwrite/config";
+// aur naviagtor and Selector chahiye
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+
+
+// 
+export default function PostForm({ post }) {
+
+    // Hume kuch information cahahiye, and jab bhi aap form use krenge, aise hi information chahiye hoga
+    // and useForm aapko kaafi information de skta hai.
+
+    //to hum information se lenge, like register, handlesubmit , watch, setValue , control, getValues
+
+    const { register, handleSubmit, watch, setValue, control, getValues } = useForm({
+       // and additionally, aap useForm ke ander aap 1 object bhi pass kr skte h, and usske ander jo bhi value aap pass krna chahte hai aap de skte h
+        // to mai default value pass kr raha hu.
+        // default value ky h? - wo value hai to hum actually use krenge.
+        defaultValues: {
+
+            // and ye value aayegi kaha se , to jab bhi koi post pe click krega then ye value aa jaayegi.
+            // jab bhi edit button pe click krunga then ye post ki saari value chahiye.
+            // agar post hai to usska titile use kr lo , nahi to empty pass kr rahe h
+            title: post?.title || "",
+            // issi tarah agar koi url(slug) hai to use kr lenge, nahi to empty
+            slug: post?.$id || "",
+            //Post ke ander content hai to use kr lo nahi to empty de do.
+            content: post?.content || "",
+            // post ke ander status h , to use kr lo nahi to empty de do.
+            status: post?.status || "active",
+        },
+    });
+
+    //  ab naviagtion bhi ke lete hai 
+    const navigate = useNavigate();
+    //Ab mujhe userData chahiyhe, and ye mujhe state se milega wohaa hi rakhaa hua hai.
+     // to mai useSelector ko bol raha hu userData mujhe de do.
+    const userData = useSelector((state) => state.auth.userData);
+
+    // Now, agar user ne form submit kr diya hai to kya kro.
+    // to pehle 1 submit name ka form banate hai, and dekhenge ky chiz kaise kaam krti h
+    // ab 2 cases h to, 
+    // 1st case , koi post hai to update kar do , 
+    // 2nd case , koi post nahi hai to create kar do.
+
+    // to ek submit banate hai and async ke ander ki saara data jaayega.
+    const submit = async (data) => {
+
+        // 1st case , post hai to update kar do , 
+        if (post) {
+
+            // to sabse pehle file ko handle krenge,
+            // file ko lo and upload kr do
+            // data se aap image [0] 1st index waala le lenge. and agar image nahi hai then(:) null kro
+            // appwrite ki service use krke file ko upload kr do (from data se 1st index waala image)
+            const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
+
+            // ab agar aapke pass file aa chuki h, to purani image delete bhi to kro
+            if (file) {
+                // appwriteService ka use krke purani image ko delete kr do
+                appwriteService.deleteFile(post.featuredImage);
+            }
+
+
+            // ab uppar jo change kiye hai post ke ander , usse update krenge
+
+            const dbPost = await appwriteService.updatePost(post.$id, {
+                // spread kr diye data ko , and usko update krenge
+                ...data,
+                // and bas ek field overwrite krna hoga jo ki yaha update kiye h featured image
+                // agar file hai to file ki id se overwrite kro , warna undefined kro
+                featuredImage: file ? file.$id : undefined,
+            });
+
+            // ab agar dbPost hua to user ko navigate kr do
+            if (dbPost) {
+                navigate(`/post/${dbPost.$id}`);
+            }
+        } 
+         // 2nd case , koi post nahi hai to create kar do.
+        else {
+            // ab file ko handle krenge
+            // data se aap image [0] 1st index waala le lenge.
+            // appwrite ki service use krke file ko upload kr do
+            const file = await appwriteService.uploadFile(data.image[0]);
+
+            
+            // agar file hai to
+            if (file) {
+                // sabse pehle file ki id le lete hai.
+                const fileId = file.$id;
+
+                // ab humara pass data hai, and usske ander featuredImage h to usko file id se overwrite/update kro
+                data.featuredImage = fileId;
+                
+                // ab uppar 1 property update kiye , and baaki baachi hui property create kr do
+                const dbPost = await appwriteService.createPost({ ...data, 
+                    // user data se userid le lenge
+                    // and userData jo hai, wo hum store se laa rahe h
+                    userId: userData.$id });
+
+
+            // ab agar dbPost hua to user ko navigate kr do
+                if (dbPost) {
+                    navigate(`/post/${dbPost.$id}`);
+                }
+            }
+        }
+    };
+
+
+    // ab new concepts dekhte hai, jo ki help krega interview clear krwane me.
+    // ab ye slug transform ky krta hai ?
+    // 2 inputs fields hai,ek title and slug h, 
+    // title ko watch krna hai and slug ke ander value generate krni h
+    // agar user kahi pe ( ) space deta hai to mujhe ussko replace krna h - (dash me)
+    
+    // sabse pehle useCallback le lete hai and usske ander value pass kr rahe h
+    const slugTransform = useCallback((value) => {
+
+        // agar value h and value ka type bhi check kr lete h string h ya  nahi
+        if (value && typeof value === "string")
+            // then return kr denge value ko
+            return value
+            // saari value ko trim kr do
+                .trim()
+                // and lower case kr do
+                .toLowerCase()
+                // and replace kr do
+                .replace(/[^a-zA-Z\d\s]+/g, "-")
+                // and replace kr do
+                .replace(/\s/g, "-");
+
+        // and agar value nahi h to empty return kro
+        return "";
+    }, 
+    // useCallback ke ander 2nd argument me dependency hoti hai, but abhi need nhi h to empty
+    []);
+
+    // Interview Ques : uppr jo slugTransform banaye h, ussko use kaise krna h ?
+
+
+    // react me se hum useEffect use kr lete hai
+    React.useEffect(() => {
+        // Ab hum banayenge subscription
+        // ab ye subscription kaise banega? - ye banta hai watch method se
+
+        const subscription = watch(
+            // ab watch ke ander bhi ek callback milta hai.
+            // ab ander mujhe value milti hai, and name milti hai
+            (value, { name }) => {
+            // humare pass jo name hai, wo tittle hai.
+                if (name === "title") {
+            // ab jaha pe title hai wooha ek setvalue() method use krenge
+                setValue("slug", slugTransform(value.title), 
+                // validate krna hai ya nahi ? to hum kr rahe hai 
+                { shouldValidate: true });
+            }
+        });
+
+        // return ke ander ek callback milta hai,ussko call krke subscription ko unsubscribe kr rahe h 
+        return () => subscription.unsubscribe();
+    }, 
+    // ab dependecy array me hai watch, sllugTransform, setValue , ye sab me kuch bhi change aayega then hum useefect ko run krna h
+    [watch, slugTransform, setValue]);
+
+
+
+    return (
+        // form mera 2 part me divided hai 
+        // first part me 2/3 wala part hoga
+        // second part me 1/3 wala part hoga
+
+
+        // first part me 2/3 wala part hoga
+        <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
+            <div className="w-2/3 px-2">
+                <Input
+                    label="Title :"
+                    placeholder="Title"
+                    className="mb-4"
+                    {...register("title", { required: true })}
+                />
+                <Input
+                    label="Slug :"
+                    placeholder="Slug"
+                    className="mb-4"
+                    {...register("slug", { required: true })}
+                    onInput={(e) => {
+                        setValue("slug", slugTransform(e.currentTarget.value), { shouldValidate: true });
+                    }}
+                />
+
+                {/* // aur RTE maine banaya tha ussko as it is pass kr denge. */}
+                <RTE label="Content :" name="content" control={control} defaultValue={getValues("content")} />
+            </div>
+
+
+            // second part me 1/3 wala part hoga
+            <div className="w-1/3 px-2">
+                <Input
+                    label="Featured Image :"
+                    type="file"
+                    className="mb-4"
+                    accept="image/png, image/jpg, image/jpeg, image/gif"
+                    {...register("image", { required: !post })}
+                />
+                {post && (
+                    <div className="w-full mb-4">
+                        <img
+                            src={appwriteService.getFilePreview(post.featuredImage)}
+                            alt={post.title}
+                            className="rounded-lg"
+                        />
+                    </div>
+                )}
+                <Select
+                    options={["active", "inactive"]}
+                    label="Status"
+                    className="mb-4"
+                    {...register("status", { required: true })}
+                />
+                <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full">
+                    {post ? "Update" : "Submit"}
+                </Button>
+            </div>
+        </form>
+    );
+}

@@ -1,0 +1,213 @@
+
+
+
+
+8:20:00 - 8:46:00 - Summary End 
+
+7:53:00 - 8:19:00 - Debugging & TODO
+
+=================================================
+7:24:00 - 7:52:00 [Project Coding Done]
+
+Step 01:
+Create Signup.jsx - 7:24:00
+12MegaBlog/src/pages/Signup.jsx
+
+Create Login.jsx - 7:26:00
+12MegaBlog/src/pages/Login.jsx
+
+Create Post Add wala Page - 7:27:00
+12MegaBlog/src/pages/AddPost.jsx
+
+Create All Post view waala page - 7:29:00 
+12MegaBlog/src/pages/AllPosts.jsx
+
+Create Edit Post Page - 7:36:00
+12MegaBlog/src/pages/EditPost.jsx
+
+Create Home Page (Easly work)) - 7:39:00
+12MegaBlog/src/pages/Home.jsx
+
+Create Post waala Page - 7:43:00
+//Note: Video me Code directly Paste kiya gya hai.
+12MegaBlog/src/pages/Post.jsx
+
+Main File Modified - 7:45:00 - 7:52:00 
+12MegaBlog/src/main.jsx
+
+
+============================================================
+4:59:00 - 7:23:00 Overall Completed
+Step 01 : component create 
+12MegaBlog/src/components/container/Container.jsx
+
+Video mai Code copy kiya and paste kr diya bass.
+12MegaBlog/src/components/Footer/Footer.jsx
+
+create a Logo 
+12MegaBlog/src/components/Logo.jsx
+
+Create Header - 5:04:00 - 5:21:00
+12MegaBlog/src/components/Header/Header.jsx
+
+Create LogoutBtn - 5:07:00
+12MegaBlog/src/components/Header/LogoutBtn.jsx
+
+Create Common Use Button - 5:22:00
+12MegaBlog/src/components/Button.jsx
+
+Create input.jsx (important file)
+12MegaBlog/src/components/input.jsx
+
+Create Select.jsx  (Ye mera select button h)
+12MegaBlog/src/components/Select.jsx
+
+Create Card component- 5:45:00 (cards waala component banayenge)
+12MegaBlog/src/components/PostCard.jsx
+
+Create a Login component using React-hook-form - 5:53:00
+12MegaBlog/src/components/Login.jsx
+Extra:
+documentation :- https://react-hook-form.com/get-started#Registerfields
+site: https://regexr.com/
+                // Go to Community Pattern 
+                // then Search : Email -> Email (normal we are using)
+                // then copy the expression
+
+Create a signup - 6:14:00  (Same concept as Login.jsx)
+12MegaBlog/src/components/Signup.jsx
+
+
+Create a authentication layout (So interesting layout) - 6:27:00
+12MegaBlog/src/components/AuthLayout.jsx
+Note: Ye ek mechanishm hai ki kis tarah se pages , and route ko protect kiya jaata hai.
+Basically, ye ek projected container h
+
+
+Create Real-Time Editor (RTE) - 6:41:00
+12MegaBlog/src/components/RTE.jsx
+Then , additionally ye required h
+12MegaBlog/src/components/post-form/PostForm.jsx
+
+==================================================================
+4:37:00 -- 4:58:00  Overall
+
+Step 03: 
+tailwindcss installing..
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+
+
+then go to 
+12MegaBlog/tailwindcss.config.js
+and paste this:
+content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+
+then go to 
+/project/workspace/12MegaBlog/src/index.css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+then code in this file 
+/project/workspace/12MegaBlog/src/App.jsx
+
+then go to 
+/project/workspace/12MegaBlog/src/main.jsx
+
+
+Step 02:
+-------------------!important-------------------
+// note: jab mujhe redux ko react ke saath use krna hai to useDispatch , lena bahut zaruri h
+import {useDispatch} from 'react-redux'
+
+Step 01:
+/project/workspace/12MegaBlog/src/components/index.js (only import header & Footer)
+then work into this file,
+/project/workspace/12MegaBlog/src/App.jsx
+
+========================================================
+4:28:00 - 4:36:00  [Store config and create]
+Rule:To create any slice, you need 3 things
+1.name 
+2.initialState
+3.reducers
+
+and then reducers ke ander jo bhi hote hai, unke pass (state) and (action)
+ka access hota hai.
+
+slice/feature create 
+12MegaBlog/src/store/authSlice.js
+
+
+Store created
+and store ka ye hai ki, mujhe saare reducer ke baare me batao
+12MegaBlog/src/store/store.js
+========================================================
+4:27:00 - Summary till now 
+=========================================================
+3:27:00 - 4:26:00
+Step 02:
+then ek mujhe service banani h, jo ki appwrite se related hai.
+so 
+
+1st serive appwrite ki
+src/appwrite/auth.js
+
+2nd serive appwrite ki
+src/appwrite/config.js
+
+Step 01:
+Appwrite documentation (Discussion)
+note: video waala specific ni mila.
+https://appwrite.io/docs/products/auth
+
+======================
+2:56:00 - 3:27:00
+step 04: production grade conf file create
+/src/conf/conf.js
+
+Step 03: .env.sample file created
+/src/.env.sample
+
+Step 02:
+To start the application :
+npm run dev
+
+Step 01:
+All required package installed in 1 go
+npm i @reduxjs/toolkit react-redux react-router-dom appwrite @tinymce/tinymce-react html-react-parser react-hook-form
+
+
+================================================================
+2:54:00 - Mega project start
+
+Step 02:
+bun install    -not working
+npm install -g bun
+or npm install
+
+Step 01:
+ npm create vite@latest
+ Need to install the following packages:
+create-vite@7.1.1
+Ok to proceed? (y) y
+│
+◇  Project name:
+│  12MegaBlog
+│
+◇  Package name:
+│  12megablog
+│
+◇  Select a framework:
+│  React
+│
+◇  Select a variant:
+│  JavaScript
+
+=============================================================
+New Project () - 2:28:00 [Backend using Appwrite]
+Project 07 (Blog App)  (Decoded)- Start 2:36:00
