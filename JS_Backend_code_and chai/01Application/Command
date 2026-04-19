@@ -1,0 +1,36 @@
+
+
+
+https://api.github.com/users/hiteshchoudhary
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+npm i dotenv
+
+
+// Hot Reloading:
+// nodemon  (ajb bhi koi code me change hoga, to bar bar server ko restart nahi karna padega
+// npm install nodemon)
+
+==============================
+
+npm install nodemon
+
+
+Then Install Express:
+npm i express
+
+
+============================================
+npm init
+
+package name: (01application) chaibackend
+version: (1.0.0) 
+description: a basic app to deploy
+entry point: (index.js) 
+test command: 
+git repository: 
+keywords: node chai
+author: Kishan
+license: (ISC) 
+
