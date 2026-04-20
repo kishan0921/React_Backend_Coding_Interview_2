@@ -12,7 +12,7 @@ import cookieParser from "cookie-parser";
 // and ye mera express() method se banega.
 const app = express();
 
-// Note : jab bhi aap middleware use karte hai , to app.use() method ka use karte hai
+//  Note : jab bhi aap middleware use karte hai , to app.use() method ka use karte hai
 app.use(
   cors({
     // Niche ye objects hai
