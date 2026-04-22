@@ -69,7 +69,7 @@ app.use(cookieParser());
 
 // STEP : 08 - 11 asyncHandler.js go here.
 
-// STEP 09 
+// STEP 09  (// (19 user.routes.js file)- coming here STEP : 04 (Go To 10 App.js file))
 // routes import
 import userRouter from "./routes/user.routes.js";
 // import healthcheckRouter from "./routes/healthcheck.routes.js"
