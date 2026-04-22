@@ -1,5 +1,6 @@
-// logout user - controller me need padi isski
+//(18_20 user.controller) logout user - controller me need padi isski
 
+// STEP : 01  (time - 37:45  -- 55:00 )
 import { asynchHandler } from "../utils/asyncHandler";
 import jwt from "jsonwebtoken"
 
@@ -7,7 +8,7 @@ import jwt from "jsonwebtoken"
 // Note: Ye middleware bas verify krega ki, user hai ya nahi.
 
 
-
+// STEP : 02
 //sabse pehle asynchHandler ka use karenge, then usske ander async ()
 // then request, response, next parameter pass karenge.
 // next - isska mtlb hai ki isska kaam ho gya next jaaha le jaana hai le jao...jaha bhi le jaana h le jao.
@@ -15,7 +16,7 @@ import jwt from "jsonwebtoken"
 export const verifyJWT = asynchHandler (async (req, _, next) => {
     
     try {
-        // Step 01:
+        // Step 03:
         // Ab token ka access kaise loge. bahut simple hai- kyuki request ke pass cookie ka acces hai.
         // maine hi diya hai, app.js (app.use(cookieParser())) - cookieParser middleware use krke
     
@@ -33,13 +34,13 @@ export const verifyJWT = asynchHandler (async (req, _, next) => {
         const token = req.cookies?.accessToken || req.header('Authorization')?.replace("Bearer ", "");
     
     
-        // Step 02:
+        // Step 04:
         //Now, agar appke paas token nahi mila then, errror bhej do.
         if(!token){
             throw new ApiError(401, "Unauthorized request");
         }
     
-        // Step 03: 
+        // Step 05: 
         // ab yaaha hume decode krna hoga information jo hum Jwt token me liye the.
         // ab hume jwt use krna waale h to, usske import krenge and then verify krna hoga 
         // Verfiy krna time , kuch kuch information issko dena hoga.
@@ -48,7 +49,7 @@ export const verifyJWT = asynchHandler (async (req, _, next) => {
     
         const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
     
-        // step 04: user ko find krenge using findbyId
+        // step 06: user ko find krenge using findbyId
         // and agar user hai to decodeToken me hume uss user ka id mil jaayega.
         // ab decode krke jo information aaya hai, ussme kcuh field nahi chahiye so, select ka use kr lenge.
         // and -password and -refreshToken ko select ke ander daal rahe taaki wo remove ho jaayega.
@@ -67,6 +68,7 @@ export const verifyJWT = asynchHandler (async (req, _, next) => {
     
         // finally jab sab kaam ho gaya to next ka use krke, next work pe shoft ho jaao
         next();
+        // STEP : 07
     } catch (error) {
         // new new ApiError throw kr do.
         // and error ka message pass kr do

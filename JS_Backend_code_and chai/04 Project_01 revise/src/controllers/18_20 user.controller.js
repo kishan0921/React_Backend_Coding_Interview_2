@@ -223,48 +223,8 @@ const registerUser = asyncHandler(async (req, res) => {
     // all 9 algorithm completed.
 })
 
-const generateAccessAndRefreshTokens = async (userId) => {
-    
-    try {
-        // now, agar mujhe token generate krna hoga to , usske liye mujhe user find krna hoga.
-        // yaha User ye user use kr rahe
-        // then hum find kr lenge user using findbyId se (and isske ander userid pass krke)
-        // then ye jo user mila hai, issko hold kr lete hai ek varible me. 
-        const user = await User.findById(userId);
-        // now, Ab isske access token and refresh token generate krenge.
-        // generateAccessToken se access token generate krwa liye.
-        // and accessToken varible me store kr liye
-        const accessToken = user.generateAccessToken();
-        // and generateRefreshToken se refresh token generate krwa liye
-        // and refreshToken varible me store kr liye
-        const refreshToken = user.generateRefreshToken();
 
-
-        // Ab user ke ander hum refresh token add krenge.
-        user.refreshToken = refreshToken;
-        // ab user dave krna hoga , to use save method ka use kr lenge.
-        // Now save method jab use krenge to password bhi chahiye, jo ki hum pass hi nahi kr rahe hai, only we are passing (userid)
-        // to hum ek paramter pass krenge.{validateBeforeSave: false} and false kr diye h, means bs user save kr do. without any checking
-        // kyuki database ka operation hai, to time lega....isliye "await use kr lo"
-       // note: yaha hum user ko save krwa rahe hai db me.
-        await user.save({validateBeforeSave: false});
-
-        // Agar sabkuch yaha tak thik hai to , refresh token and access token return kr do
-        return {accessToken , refreshToken}
-
-        // now go to Step: 06  - loginUser
-        
-    } catch (error) {
-        // Error handling
-        throw new ApiError(500, "Something went wrong while generating refresh and access tokens");
-    }
-}
-
-
-
-
-
-
+// STEP : 07 (5:00)
 // Now basic login banayenge.
 const loginUser = asyncHandler(async (req, res) => {
     // Steps: 
@@ -416,12 +376,54 @@ const loginUser = asyncHandler(async (req, res) => {
          
     )
 
-})  
+}) 
 
+
+// TIME : 17:45
+// STEP : 07.1 (loginUser method jab banayenge,ussi me "generateAccessAndRefreshTokens" ka use hoga)
+const generateAccessAnsdRefreshTokens = async (userId) => {
+    
+    try {
+        // now, agar mujhe token generate krna hoga to , usske liye mujhe user find krna hoga.
+        // yaha User ye user use kr rahe
+        // then hum find kr lenge user using findbyId se (and isske ander userid pass krke)
+        // then ye jo user mila hai, issko hold kr lete hai ek varible me. 
+        const user = await User.findById(userId);
+        // now, Ab isske access token and refresh token generate krenge.
+        // generateAccessToken se access token generate krwa liye.
+        // and accessToken varible me store kr liye
+        const accessToken = user.generateAccessToken();
+        // and generateRefreshToken se refresh token generate krwa liye
+        // and refreshToken varible me store kr liye
+        const refreshToken = user.generateRefreshToken();
+
+
+        // Ab user ke ander hum refresh token add krenge.
+        user.refreshToken = refreshToken;
+        // ab user dave krna hoga , to use save method ka use kr lenge.
+        // Now save method jab use krenge to password bhi chahiye, jo ki hum pass hi nahi kr rahe hai, only we are passing (userid)
+        // to hum ek paramter pass krenge.{validateBeforeSave: false} and false kr diye h, means bs user save kr do. without any checking
+        // kyuki database ka operation hai, to time lega....isliye "await use kr lo"
+       // note: yaha hum user ko save krwa rahe hai db me.
+        await user.save({validateBeforeSave: false});
+
+        // Agar sabkuch yaha tak thik hai to , refresh token and access token return kr do
+        return {accessToken , refreshToken}
+
+        // now go to Step: 06  - loginUser
+        
+    } catch (error) {
+        // Error handling
+        throw new ApiError(500, "Something went wrong while generating refresh and access tokens");
+    }
+}
+
+
+// STEP : 08 (33:46 -- 1:00:00)
+// STEP : 09 ( GO TO 21 auth.middleware.js file - complete all steps-- comback here..)
 // Chalo ab logout user bhi bana lete hai.
 // wohi basic asyncHandler use karenge, and isske ander async code likhenge, and isske and (req,res) hoga
 // then => {} arrow function likhenge
-
 const logoutUser = asyncHandler(async (req, res) => {
     // kaise kiya jaayega.
     // sabse phale cookie warega, delete krna hoga.
@@ -490,12 +492,13 @@ const logoutUser = asyncHandler(async (req, res) => {
 
 });
 
+
+// STEP : 10 (1:14:10 -- 1:31:00)
 // Ab hum 1 refreshaccesstoken ka 1 endpoint banate hai.
 // endpoint ke liye, controller hi banana hoga.
 // name de dete hai, refreshAccessToken
 // then wohi asyncHandler then usske ander hum baanate hai async Request,
 // then req - equest and res - response isske ander 
-
 const refreshAccessToken = asyncHandler(async (req, res) => {
     // Socho 
     // Referesh Token hume refresh krwaana hai, so refresh krne ke liye,
@@ -579,6 +582,7 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
     }
 
 })
+
 
 
 // ab hum ek aur controller banayenge, jisska use krke hum user se usska password change krwaayenge.
