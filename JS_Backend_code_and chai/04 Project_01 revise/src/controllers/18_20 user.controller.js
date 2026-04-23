@@ -1,58 +1,40 @@
-// Async handleer jo hai, uska use hoga to import kr lete h
+// STEP 01:
 
+// controller ke ander hume pta ,ki humne ek helper function likh rakhi hai
+// "11 asyncHandler.jsx" and isske ander humari req,res,next sab aa jaati h.
+// and promise ki help se hum issko handle kr lete hai... so , Basically(asyncHandler.jsx)
+// ek wrapper bana kr rakh diya hai, taaki koi problem aaye to ye handle kr lega.
+// to ye laagega hi laagega, issko import krwa lete hai.
+// Async handleer jo hai, uska use hoga to import kr lete h
 import { asyncHandler } from "../utils/asyncHandler.js";
+
+// STEP :02
+// ApiErrror jo bhi lagegi.
 import { ApiError } from "../utils/ApiError.js";
+// User model bhi lagegi.
 import { User } from "../models/user.model.js";
+// cloudinary pe  upload krna hoga to ussko bhi import kr lete hai.
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
+// ApiResponse waala bhi import kr lete hai.
 import { ApiResponse } from "../utils/ApiResponse.js";
 
+// jwt ka bhi use  hoga.
 import { jwt } from "jsonwebtoken";
+// mongoose bhi use hoga, so import kr lete hai.
 import mongoose from "mongoose";
 
 
+// STEP : 03
+// const registerUser = asyncHandler(async (req,res)=>{
+//     res.status(500).json({
+//         message: " Chai and Code"
+//     })
+// })
+
+// STEP : 04 (GO TO 19.user.route.js file and complete till step 04)
 
 
-
-const generateAccessAndRefreshTokens = async (userId) => {
-    
-    try {
-        // now, agar mujhe token generate krna hoga to , usske liye mujhe user find krna hoga.
-        // yaha User ye user use kr rahe
-        // then hum find kr lenge user using findbyId se (and isske ander userid pass krke)
-        // then ye jo user mila hai, issko hold kr lete hai ek varible me. 
-        const user = await User.findById(userId);
-        // now, Ab isske access token and refresh token generate krenge.
-        // generateAccessToken se access token generate krwa liye.
-        // and accessToken varible me store kr liye
-        const accessToken = user.generateAccessToken();
-        // and generateRefreshToken se refresh token generate krwa liye
-        // and refreshToken varible me store kr liye
-        const refreshToken = user.generateRefreshToken();
-
-
-        // Ab user ke ander hum refresh token add krenge.
-        user.refreshToken = refreshToken;
-        // ab user dave krna hoga , to use save method ka use kr lenge.
-        // Now save method jab use krenge to password bhi chahiye, jo ki hum pass hi nahi kr rahe hai, only we are passing (userid)
-        // to hum ek paramter pass krenge.{validateBeforeSave: false} and false kr diye h, means bs user save kr do. without any checking
-        // kyuki database ka operation hai, to time lega....isliye "await use kr lo"
-       // note: yaha hum user ko save krwa rahe hai db me.
-        await user.save({validateBeforeSave: false});
-
-        // Agar sabkuch yaha tak thik hai to , refresh token and access token return kr do
-        return {accessToken , refreshToken}
-
-        // now go to Step: 06  - loginUser
-        
-    } catch (error) {
-        // Error handling
-        throw new ApiError(500, "Something went wrong while generating refresh and access tokens");
-    }
-}
-
-
-
-
+// STEP : 05
 // Hum ek method create kr rahe h- isska kaam hai sirf user ko register krna hai
 // asyncHandler ka use karenge - jo humne banaya, jo ki Higher order function hai.
 //asynchandler jo ki ek HOC and ye accept krta hai, ek function ko
@@ -66,7 +48,7 @@ const generateAccessAndRefreshTokens = async (userId) => {
 //         message: "chai aur code"
 //     })
 // })
-
+// STEP : 06 (GO TO 19.user.route.js file and complete only STEP:05)
 const registerUser = asyncHandler(async (req, res) => {
     
     // 01- get user details from frontend
@@ -241,6 +223,8 @@ const registerUser = asyncHandler(async (req, res) => {
     // all 9 algorithm completed.
 })
 
+
+// STEP : 07 (5:00)
 // Now basic login banayenge.
 const loginUser = asyncHandler(async (req, res) => {
     // Steps: 
@@ -392,12 +376,54 @@ const loginUser = asyncHandler(async (req, res) => {
          
     )
 
-})  
+}) 
 
+
+// TIME : 17:45
+// STEP : 07.1 (loginUser method jab banayenge,ussi me "generateAccessAndRefreshTokens" ka use hoga)
+const generateAccessAnsdRefreshTokens = async (userId) => {
+    
+    try {
+        // now, agar mujhe token generate krna hoga to , usske liye mujhe user find krna hoga.
+        // yaha User ye user use kr rahe
+        // then hum find kr lenge user using findbyId se (and isske ander userid pass krke)
+        // then ye jo user mila hai, issko hold kr lete hai ek varible me. 
+        const user = await User.findById(userId);
+        // now, Ab isske access token and refresh token generate krenge.
+        // generateAccessToken se access token generate krwa liye.
+        // and accessToken varible me store kr liye
+        const accessToken = user.generateAccessToken();
+        // and generateRefreshToken se refresh token generate krwa liye
+        // and refreshToken varible me store kr liye
+        const refreshToken = user.generateRefreshToken();
+
+
+        // Ab user ke ander hum refresh token add krenge.
+        user.refreshToken = refreshToken;
+        // ab user dave krna hoga , to use save method ka use kr lenge.
+        // Now save method jab use krenge to password bhi chahiye, jo ki hum pass hi nahi kr rahe hai, only we are passing (userid)
+        // to hum ek paramter pass krenge.{validateBeforeSave: false} and false kr diye h, means bs user save kr do. without any checking
+        // kyuki database ka operation hai, to time lega....isliye "await use kr lo"
+       // note: yaha hum user ko save krwa rahe hai db me.
+        await user.save({validateBeforeSave: false});
+
+        // Agar sabkuch yaha tak thik hai to , refresh token and access token return kr do
+        return {accessToken , refreshToken}
+
+        // now go to Step: 06  - loginUser
+        
+    } catch (error) {
+        // Error handling
+        throw new ApiError(500, "Something went wrong while generating refresh and access tokens");
+    }
+}
+
+
+// STEP : 08 (33:46 -- 1:00:00)
+// STEP : 09 ( GO TO 21 auth.middleware.js file - complete all steps-- comback here..)
 // Chalo ab logout user bhi bana lete hai.
 // wohi basic asyncHandler use karenge, and isske ander async code likhenge, and isske and (req,res) hoga
 // then => {} arrow function likhenge
-
 const logoutUser = asyncHandler(async (req, res) => {
     // kaise kiya jaayega.
     // sabse phale cookie warega, delete krna hoga.
@@ -466,12 +492,13 @@ const logoutUser = asyncHandler(async (req, res) => {
 
 });
 
+
+// STEP : 10 (1:14:10 -- 1:31:00)
 // Ab hum 1 refreshaccesstoken ka 1 endpoint banate hai.
 // endpoint ke liye, controller hi banana hoga.
 // name de dete hai, refreshAccessToken
 // then wohi asyncHandler then usske ander hum baanate hai async Request,
 // then req - equest and res - response isske ander 
-
 const refreshAccessToken = asyncHandler(async (req, res) => {
     // Socho 
     // Referesh Token hume refresh krwaana hai, so refresh krne ke liye,
@@ -556,7 +583,9 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
 
 })
 
+// STEP :11 (create 22 subscription.model.js)
 
+// STEP :12
 // ab hum ek aur controller banayenge, jisska use krke hum user se usska password change krwaayenge.
 const changeCurrentPassword = asyncHandler(async (req,res) => {
     // Ab password change krwaane ke liye , kitne field lene hai wo aape depend krta h.
@@ -595,7 +624,7 @@ const changeCurrentPassword = asyncHandler(async (req,res) => {
     .json(new ApiResponse(200,user,"Password changed successfully"))
 })
 
-
+// STEP :13
 // ab current user get krna hai humme.
 // to agar user logged in hoga to , to 2 min ussko user me find krke de skta hu.
 const getCurrentUser = asyncHandler(async (req,res) => {
@@ -604,6 +633,7 @@ const getCurrentUser = asyncHandler(async (req,res) => {
     .json(new ApiResponse(200,req.user,"User fetched successfully"))
 })
 
+// STEP :14
 // ab agar aapko aur bhi detail update krwaane h to ,
 const updateAccountDetails = asyncHandler(async (req,res) => {
     // kya krna hai, sabse pehle req.user se information leni padegi.
@@ -648,6 +678,7 @@ const updateAccountDetails = asyncHandler(async (req,res) => {
 
 })
 
+// STEP :15
 // ab avatar user ka update krwa lenge.
 const updateUserAvatar = asyncHandler(async (req,res) => {
     // Ab hume yaha pe avatar update krna hoga.
@@ -694,6 +725,7 @@ const updateUserAvatar = asyncHandler(async (req,res) => {
     .json(new ApiResponse(200, user, "avatar Image updated successfully"))
 })
 
+// STEP :16
 // Same copy paste code hai, updateUserAvatar waala and usski me kuch changes kiye h
 // Basically uppar avatar update krne waala controller banaye the, and yaaha hume
 // coverImage update krne waala controller banana h

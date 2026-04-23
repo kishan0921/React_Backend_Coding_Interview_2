@@ -1,4 +1,7 @@
+// Ab user ke routes aap rakh liye hai , to aab hum routes banayenge.
 
+// STEP 01:
+// Sabse pehle ek router import kro.
 // Router banana hai to lena hoga, and ye express se aayega.
 import { Router } from "express";
 import { loginUser, logoutUser, registerUser,refreshAccessToken, changeCurrentPassword, getCurrentUser, updateAccountDetails, updateUserAvatar, updateUserCoverImage, getUserChannelProfile, getUserWatchHistory } from "../controllers/user.controller.js";
@@ -8,9 +11,12 @@ import { upload } from "../middlewares/upload.middleware.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
 
 
+// STEP 02:
+// jaise aap express se app baana rahe the, waise hi hum router se "Router" banayenge.
 // ek router varible bana lete hai using Router 
 const router = Router();
 
+// STEP : 05
 // abhi register route laa rahe hai, and then post() method ka use krke, 
 // ander registerUser waala method use kr rahe h
 // example : http://localhost:8000/users/register
@@ -41,6 +47,8 @@ router.route("/register").post(
     registerUser
 );
 
+
+// STEP 
 // using router usske baad hume ek new route banaana h, /login route bana liye,
 // then isske infromation lena hai to , post () method ka use kr lenge.
 // then inside post() method hum loginUser() method call kr lnege.
@@ -69,6 +77,9 @@ router.route("/cover-img").post(verifyJWT,upload.single("coverImg"),updateUserCo
 router.route("/c/:username").get(verifyJWT,getUserChannelProfile)
 router.route("/history").get(verifyJWT,getWatchHistory)
 
+// STEP : 04 (Go To 10 App.js file)
 
+// STEP : 03 
+// then issko aap  export kr dijiye.
 // ab router export kr lenge
 export default router;

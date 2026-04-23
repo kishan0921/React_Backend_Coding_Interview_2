@@ -1,9 +1,12 @@
 
+// STEP : 01
 // step 1:mongoose import kar rahe hai, and
 // baar baar mongoose.Schema nahi likhna paade issliye
-// {Schema} bhi destrcture kar lete h
+// {Schema} bhi destrcture kar lete h mongoose se
 import mongoose , {Schema} from "mongoose";
 
+
+// STEP : 12
 // Now, Bcrypt and jsonwebtoken ko lenge
 // Ab encrypt wagera kaise karoge, 
 // see, direct encryption krna possible to hai nahi.
@@ -11,24 +14,31 @@ import mongoose , {Schema} from "mongoose";
 // unmese 1 hook hai, - prehook,
 // prehook - Jab bhi koi data save hone waala rahta hai, 
 //usse just phele kuch krwaana ho to to prehook ka use karega. Like password encrypt kr de
-
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
 
-//userSchema bana lete hai 
+
+// STEP : 02
+//userSchema bana lete hai. and ye kaha se aayega ?
+//Ek new,   Schema() ek method hai and isske ander multiple objects aayenge.
 const userSchema = new Schema(
+    // 1st object
     // now ab hum field banayenge
     {
+        // STEP : 03
+        // ye raha mera username field
         username: {
+            // username field ka type : string hai
             type: String,
-            // requied field hai ye
+            // username field required hai ye
             required: true,
-            // unique field hai
+            //username field unique  hai
             unique: true,
-            // lowercase field hai
+            //username field lowercase field hai
             lowercase: true,
-            // trim field bhi kr deta hai, taaki space na ho
+            // username field trim bhi kr deta hai, taaki space na ho
             trim : true,
+
             //Kisi bhi field ko agar aapko searchable banana hai to,
             // taaki database ki searching me aane lag jaaye.
             // uss field ki index ko true kar do.
@@ -36,6 +46,8 @@ const userSchema = new Schema(
             // but index: true krne se- thoda optimise ho jaata hai.
             index:true
         },
+        // STEP : 04
+        // ye raha mera email field h
         email: {
             type: String,
             required: true,
@@ -43,50 +55,67 @@ const userSchema = new Schema(
             lowercase: true,
             trim: true
         },
+        // STEP : 05
+        // ye raha mera fullname field h
         fullname: {
             type: String,
             required: true,
             trim: true,
             index: true
         },
-
+        // STEP : 06
+        // ye raha mera avatar field h
         avatar: {
-            type: String, // cloudinary url
+            type: String, // cloudinary url 
             required: true,
         },
-
+        // STEP : 07
+        // ye raha mera coverImage field
         coverImage : {
-            type: String, // cloudinary url
+            type: String, // cloudinary url h
         },
-        // WatchHistory field ek array hai
+        // STEP : 08
+         // ye raha mera watchHistory field h
         watchHistory: [
             {
                 type: Schema.Types.ObjectId,
                 ref: "Video"
             }
         ],
+        // STEP : 09
+        // ye raha mera password field h
         password : {
             type: String,
             // required, true hai and ek message bhi de rahe hai
             required: [true , 'Password is required']
         },
+        // ye raha mera refreshToken field h
         refreshToken: {
             type: String
         } 
     },
+
+    // STEP : 10
+    // 2nd object
     {
-        // timestamps ka use krke , mujhe createdAt,UpdatedAt ban hi jaayega
+        // timestamps ka use krke and true krne pe , mujhe createdAt,UpdatedAt ban hi jaayega
         timestamps: true
     }
 
 )
 
+// :::::::::::::::::::::::   BREAK  ::::::::::::::::::::
+// STEP : 11 (15 video.model.js) - do this file code then comeback
 
+
+
+
+// STEP : 13
 // prehook - Jab bhi koi data save hone waala rahta hai, 
 //usse just phele kuch krwaana ho to to prehook ka use karega. Like password encrypt kr de
 // Ab userSchema lo and then pre() use kr lo
 
-// Step 01:
+// STEP : 14
 // Yaha pre, ke ander mujhe 2 functionality , milti hai,
 // 1st one- jab bhi data save ho raha ho, usske phale mujhe kuch krwana hai, to "save" use kr liye.
 // isska mtlb yaha h, "save"- yaha hum apne password ko encrypt kr rahe hai
@@ -106,7 +135,7 @@ const userSchema = new Schema(
  // meeans isska kaam ho gya hai , ab aage pass kr do.
 userSchema.pre("save", async function(next){
 
-    // Step : 03:
+    // STEP : 16
     // to hume krna hoga ki, jab bhi mai password field ka modification bheju.
     // tabhi appko password change krna hai,nahi to mt krna 
     // koi password me modification nahi hota to passsword mt change krna.
@@ -119,7 +148,8 @@ userSchema.pre("save", async function(next){
     // to ab simple return kr do, next ()
     // isse ye hoga niche waaale method me hum jaayenge hi nahi.
     if(!this.isModified("password") ) return next()
-       //Step 02: Ab krna ye hai, jab koi field save ho raha ho to
+              
+    //STEP : 15 Ab krna ye hai, jab koi field save ho raha ho to
     // Unmese password field lo and ussko encrypt krke, save kar do
     // this.password se hum password le liye and acces hai,kyuki humne 
     // function use kiya hai, to this ko pta hai ssare field.
@@ -138,9 +168,16 @@ userSchema.pre("save", async function(next){
     //ex- ek banda aaya and avatar change kiya to, and pre hook ka use krke save kiye,
     // then password wapas se password change ho jaayega.and soo on...
     // to bar bar password chang hota hi jaayega, kyuki isske pass password ka access to h na
-    // Solution : Step 03:
+    // Solution : STEP : 16
 } )
 
+// ::::::::::::::: STEP 16 - Completed :::::::::::::::::::::::
+
+
+
+
+
+// STEP : 17
 // Note : 
 // Jis tarah app middleware banate hai , ussi tarah mongoose aapko method 
 // banane ka bhi option deta hai jaise like:validate, save, remove, 
@@ -168,6 +205,12 @@ userSchema.method.isPasswordCorrect = async function(passsword){
 }
 
 
+// ::::: NOTE:- generateAccessToken,generateRefreshToken have same code ::::::
+// Agar dono same code hai to 2 baar kyu same code likh rahe h?
+// RefreshToken baar baar refresh hota rahta hai, isskiye isske pass information km hoti h. (issliye issme hum sirf ID rakhte hai)
+// AccessToken (issme zaada time tk information rahta hai)
+
+// STEP : 18
 // JWT - ek bearer token hota hai, and iss token ko use krke user ko authenticate krna hota hai.
 // https://github.com/auth0/node-jsonwebtoken
 // using: from github - Synchronous Sign with RSA SHA256, and Backdate a jwt 30 seconds
@@ -215,6 +258,8 @@ userSchema.method.generateAccessToken = function(){
     
 }
 
+
+// STEP : 19
 userSchema.method.generateRefreshToken = function(){
     // Most imp: Jai upper AccessToken generate kiye , same code 
     // isska bhi hoga,
@@ -240,5 +285,10 @@ userSchema.method.generateRefreshToken = function(){
 
 }
 
-// Step : 03 export kr dete hai
+// STEP : 20
+// Ab export kr dete hai iss schema ko, and important "Video" ye aise hi likhna hai
+//Kyuki, "Video" as reference pass kiya gaya hai.
+
+// then, mongoose ko bolenge, ek model bana kar dena, model ka name "Video" rakhenge.
+// and ye model based hoga mera videoSchema pe based.
 export const User = mongoose.model("User", userSchema)

@@ -1,3 +1,6 @@
+// Note: Copy-paste code kiya gaya hai 
+// Doc : https://github.com/expressjs/multer  (Search: DiskStorage)
+
 
 // multer ka use karke hum middleware banayenge
 
@@ -8,6 +11,7 @@
 import multer from "multer";
 
 
+// STEP 01:
 // copy-paste code hai ye, from multer github
 // storage bana liya hai, humne and using multer.diskStorage() method use kr rahe h
 const storage = multer.diskStorage({
@@ -22,6 +26,7 @@ const storage = multer.diskStorage({
   },
 
 
+  // STEP : 02
   filename: function (req, file, cb) {
     // ye mai copy passte kiya hu from multer github- and i m removing this line
     // becasue abhi itna complex chahiye nahi.
@@ -37,6 +42,7 @@ const storage = multer.diskStorage({
 })
 
 
+// STEP : 03
 // Now, ye jo multer waala kahani hai, issko export bhi krna hoga
 const upload = multer({ storage: storage })
 

@@ -1,8 +1,23 @@
+// STEPS : 01
+// Ab cloudinary waali file jo hai na, usska mera simple sa goal hai.
+// ki meri aayegi kisi system ke throgh...means files meri already server pe store ho gayi h.
+//kaise store hui wo nhi pta....but jab store hoga to mujhe ek local file ka path dega.
+//(local file ka mtlb hai jo file server pe jaa chuki h wo file)
+
+
+// STEPS :
+// Server pe file bhejo 
+// server se mujhe aap local path doge file ka.
+// then mai uss file ko cloudinary pe daal dunga.
+// Jab successfully file upload ho gayi hai, then mai server file ko remove bhi kr dunga.
+// To overall, kaafi file handling humlog padhenge.
+
 
 // ab using multer file jo hai, local storeage me upload rahega,
 // using cloudinary, hum local storage file lenge and server pe store krenge
 
 
+// STEPS : 02
 // sabse pehle documententation me bola hai, v2 le aao , cloduinary se
 // and v2 accha nahi lgta, isslye hum issko cloudinary name se use karenge
 // and sb jagah aise hi use hota h.
@@ -15,20 +30,20 @@ import {v2 as cloudinary} from "cloudinary";
 import fs from "fs";
 
 
-
+// STEP : 03
 // ab hum ek method bana rahe , uploadOnCloudinary
-// and ye time lega, issliye async and then ek arrow function bana rahe 
+// and ye time lega, issliye async and then ek "arrow function" bana rahe 
 // like async () => {}
 // then async (yaha paremeter pass kro like localfilepath (means url pass kr rahe)) => {} 
 const uploadOnCloudinary = async (localfilePath) => {
     // ab krte hai try,catch ki story start
     try {
-        // Step: 01
+        // Step: 04
         // ab condition lagate hai, and check krte hai, ki localfilepath h ya nahi
         //!localFilePath - agar nahi hai to direct return kr do null ko.
         // like mujhe nahi pta next kya krna hai.Aap chahe to error message bhi return kr skte h
         if (!localFilePath) return null;
-        // step 02:upload the file in cloudinary
+        // step 05:upload the file in cloudinary
         // documentation se dekh ko same syntax hai
         
         // yaha cloudinary ke pass ek uploadeer hai and and then upload() method use krke upload kr deta hai.
@@ -39,6 +54,7 @@ const uploadOnCloudinary = async (localfilePath) => {
             // ek milta hai resource_type
             resource_type: "auto", // means jaisi file hogi khud detect kr lo
         })
+        // STEP : 06
         // Ab file upload hogya hai, to console pe message print kr dete hai
         // and upload hone ke baad jo url hai using response.url ussko bhi print kr dete hai
         // console.log("File uploaded on cloudinary", response.url);
@@ -53,6 +69,7 @@ const uploadOnCloudinary = async (localfilePath) => {
         // ab cloudinary ke response return krenge
         return response;
     } 
+    // STEP : 07
     // ab agar file sucessfully, upload nahi hui hai to catch me handle karenge.
     catch (error) {
         // ab cloudinary use kr rahe mtlb, is step se pehle file local storage me upload hui hai,

@@ -1,6 +1,12 @@
+
+// STEP : 04 GO TO (18_20 user.controller) - STEP 12
+// STEP : 01
+//(18_20 user.controller) --- STEP :11 (create 22 subscription.model.js) - controller file se aayeg hai yaha 
+
 import mongoose, {Schema} from "mongoose";  
 
 
+// STEP : 02
 // Ab hume schema banaya hai, and timestamps option use hota hai
 const subscriptionSchema = new mongoose.Schema({
     // 1st id to aise hi aa jaati h,
@@ -27,7 +33,7 @@ const subscriptionSchema = new mongoose.Schema({
 // ab aa jaate hai , bahar and bol dete hai ab chahiye timestamps
 {timestamps: true});
 
-
+// STEP : 03
 // export kr diye subscriptionSchema ko
 export const Subscription = mongoose.model("Subscription", subscriptionSchema);
 
