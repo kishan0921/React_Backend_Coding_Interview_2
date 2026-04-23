@@ -583,8 +583,9 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
 
 })
 
+// STEP :11 (create 22 subscription.model.js)
 
-
+// STEP :12
 // ab hum ek aur controller banayenge, jisska use krke hum user se usska password change krwaayenge.
 const changeCurrentPassword = asyncHandler(async (req,res) => {
     // Ab password change krwaane ke liye , kitne field lene hai wo aape depend krta h.
@@ -623,7 +624,7 @@ const changeCurrentPassword = asyncHandler(async (req,res) => {
     .json(new ApiResponse(200,user,"Password changed successfully"))
 })
 
-
+// STEP :13
 // ab current user get krna hai humme.
 // to agar user logged in hoga to , to 2 min ussko user me find krke de skta hu.
 const getCurrentUser = asyncHandler(async (req,res) => {
@@ -632,6 +633,7 @@ const getCurrentUser = asyncHandler(async (req,res) => {
     .json(new ApiResponse(200,req.user,"User fetched successfully"))
 })
 
+// STEP :14
 // ab agar aapko aur bhi detail update krwaane h to ,
 const updateAccountDetails = asyncHandler(async (req,res) => {
     // kya krna hai, sabse pehle req.user se information leni padegi.
@@ -676,6 +678,7 @@ const updateAccountDetails = asyncHandler(async (req,res) => {
 
 })
 
+// STEP :15
 // ab avatar user ka update krwa lenge.
 const updateUserAvatar = asyncHandler(async (req,res) => {
     // Ab hume yaha pe avatar update krna hoga.
@@ -722,6 +725,7 @@ const updateUserAvatar = asyncHandler(async (req,res) => {
     .json(new ApiResponse(200, user, "avatar Image updated successfully"))
 })
 
+// STEP :16
 // Same copy paste code hai, updateUserAvatar waala and usski me kuch changes kiye h
 // Basically uppar avatar update krne waala controller banaye the, and yaaha hume
 // coverImage update krne waala controller banana h
