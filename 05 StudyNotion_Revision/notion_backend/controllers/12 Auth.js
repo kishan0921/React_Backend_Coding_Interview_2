@@ -5,10 +5,10 @@
 // and Changed password
 
 // To flow hai 
-//1.SendOTP
-//2.Signup
-//3.Login
-//4.ChangePassword
+//1.SendOTP         - required
+//2.Signup          - required
+//3.Login           - required
+//4.ChangePassword  - additonal function hum likenge
 
 
 //aao jao 

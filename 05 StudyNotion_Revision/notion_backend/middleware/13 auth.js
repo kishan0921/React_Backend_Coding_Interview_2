@@ -8,7 +8,9 @@
 // exaclty same hai ...kuch new nahi 
  
 
-// aditional package need hai
+// STEP : 01
+//ab hume jo bhi aditional package need hai, ussko le kete hai.
+// jwt token ki need parne waali hai.
 const jwt = require("jsonwebtoken");
 // dotenv ki bhi need padegi
 require("dotenv").config();
@@ -16,12 +18,21 @@ require("dotenv").config();
 const User = require("../models/User");
 
  
+// STEP : 02 Chaloab auth waali chize fata fat se start krte hai.
 // 1.auth
 //Chalo auth handler function start krte hai
+// async ke ander humhare pass hai, request , response and 
+// next - taaki hum next midddle ware ke pass jaa skke.
 exports.auth = async (req, res, next) => {
-
+// now ab hum fata fat se iss middle wire ka code krna start kr diya.
     // ye raha mera try block 
     try {
+        // STEP : 03
+        // AB koi bata skte hai yaha hum ky krte the ?
+        // Auth block ke ander aap authentication check krte the,
+        // authentication kaise check hoti thi.?
+        //aap json web token verify krte the.
+
         // auth verify krne ke liye aap authentication check krte the
         // auth check krne ke liye aap Json web token verify krte the
         //aapko json web token mil jaata tha to done.. well good nahi to aap bhaaga dete the
