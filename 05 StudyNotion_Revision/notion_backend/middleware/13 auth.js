@@ -112,6 +112,7 @@ exports.isStudent = async (req, res, next) => {
 
     try{
 
+        // STEP : 04.1
         // 1st tarika hai,  (1st Method)
         // res ke ander jo role add kiya hu(Auth.js me) during login/authentication
         // yaha pe  during 3.Login step (Auth.js)
@@ -139,7 +140,10 @@ exports.isStudent = async (req, res, next) => {
         // Chalo 1st method hi use krte hai...kyuki data pehle se hi pada hai to use krte h usse
 
 
+           // STEP : 04.2
+        // Humne bola agar, request.user.accountType mera equal nahi hai "Student" ke.
         if(req.user.accountType !== "Student"){
+            // to response bhej do.
             return res.status(401).json({
                 //success mili nahi hai
                 success:false,
@@ -148,9 +152,12 @@ exports.isStudent = async (req, res, next) => {
             });
         }
 
+           // STEP : 04.3
+        // then hum next middle ware pe chale jaayenge
         next();
 
-    }catch(error){
+    }   // STEP : 04.4
+    catch(error){
         return res.status(401).json({
             //success mili nahi hai
             success:false,
@@ -162,8 +169,10 @@ exports.isStudent = async (req, res, next) => {
 }
 
 
-// 3.IsInstructor
-// same copy code as isStudent
+
+// STEP 05:
+// 3.IsInstructor  - SKIPING...
+// same copy code as isStudent (Pura code copy and paste kiya hu)
 exports.isInstructor = async (req, res, next) => {
 
     try{
@@ -190,8 +199,9 @@ exports.isInstructor = async (req, res, next) => {
 }
 
 
-// 4.isAdmin
-// same copy code as isStudent
+// STEP 06:
+// 4.isAdmin - SKIPING...
+// same copy code as isStudent (Pura code copy and paste kiya hu)
 exports.isAdmin = async (req, res, next) => {
 
     try{
