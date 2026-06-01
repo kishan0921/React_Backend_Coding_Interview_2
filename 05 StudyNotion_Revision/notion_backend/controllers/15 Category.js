@@ -1,14 +1,29 @@
 
+// STEP :01
 // mujhe need padne waali hai model ki 
 const Tag = require("../models/Tag");
 
 
+// STEP :01.1
 //1. create tag ka handler function likhna hai
 exports.createTag = async (req, res) => {
     try{
+        // Ab mai kya likhu code me, 
+        // Create tag kaise krte hai ?
+        // Kuch nahi Data nikalna hai ,
+        //data read krna hai ,
+        // and then entry Create krna hai , kaaha ni kthm
+
+
+        // STEP :03
         // 1. Data nikal liya req body se 
+        // maine bola name and description, nikal lo req.body se
         const{name, description} = req.body;
+
+        // STEP :04
         // 2.validation kar lete hai
+        // agar name ya description ni hai.. to
+        // message print kr do "All fiedls are required"
         if(!name || !description){
             return res.status(400).json({
                 success:false,
@@ -16,6 +31,7 @@ exports.createTag = async (req, res) => {
             })
         }
 
+        //STEP:05
         // 3. Create Entry in DB
         // tag ki entry create krni hai Db me 
         const tag = await Tag.create({
@@ -26,13 +42,16 @@ exports.createTag = async (req, res) => {
         // Console .log krna chahte hai 
         console.log(tag);
 
+
+        // STEP:06 
+        // Sucessful response return kr diya.
         // 4.return response krna hai ab ....Ki tag create ho gya hai
         return res.status(200).json({
             success:true,
             message:`Tag Created Successfully`,
         })
 
-
+        // STEP :02
     }catch(error){
         return res.status(500).json({
             success:false,
@@ -42,13 +61,20 @@ exports.createTag = async (req, res) => {
 }
 
 
+// STEP:07
+// Ab mujhe saare tag chahiye.s
 // 2. 2nd handler function banana hai GetAllTags Handler function 
 exports.getAllTags = async (req, res) => {
 
     try{
-        // Show krne ke liye ... Find Function mar do
+        // STEP : 09
+        // Show krne ke krenge ??
+        // Kuch nahi.........Find Function mar do
 
-        //here, Find ke ander koi input citeria nahi hai, But make sure krna 
+        //here, Find ke ander koi input ni h, koi citeria nahi hai.
+        // Aapke pass jo bhi entry paadi hai DB, me wo le aana 
+        // But make sure krna 
+
         // jo bhi data laa rahe, usske ander name and description hona chahiue response ke ander
         const tags = await Tag.find({}, {name:true, description:true});
         // return response
@@ -59,6 +85,7 @@ exports.getAllTags = async (req, res) => {
             allTags,
         })
 
+        // STEP:08
     }catch(error){
         return res.status(500).json({
             success:false,
@@ -68,6 +95,8 @@ exports.getAllTags = async (req, res) => {
 }
 
 
+
+// STEP :10 -- Baad me First Go to "16 Course.js"
 // 3. CategoryPageDetails handler function 
 
 exports.categoryPageDetails = async (req, res) => {

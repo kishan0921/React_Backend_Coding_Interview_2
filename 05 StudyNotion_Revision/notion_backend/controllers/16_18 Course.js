@@ -1,3 +1,10 @@
+// Ab yaha mujhe 
+//2 handler function banane hai,
+// 1- Course ko create krne aane chahiye 
+// 2- And saaree course fetch krne aane chahiye.
+
+
+// STEP :01
 // sabse pehle course model ki need padegi
 const Course = require("../models/Course");
 // tags ki need bhi paadegi
@@ -5,16 +12,22 @@ const Tag = require("../models/Tag");
 // User model ki bhi need padegi 
 const User = require("../models/User");
 
+
+// STEP 02: Go To "17 ImageUploader.js" and complete all steps
+
+
+//STEP:03
 // Ab Dhyn se socho to 1 chiz ki need aur hai.... image uplaod krna hoga 
 // Cloudinary install karo, and create imageUploader.js Function file in utils folder 
 // wait.......Util me ab imageuploader ban gyi hai.. ussko bhi import kr lete hai
 const {uploadImageToCloudinary} = require("../utils/ImageUploader");
 
 
-
+// STEP :04
 //1. Create Course Handler Function 
 exports.createCourse = async (req, res) => {    
     try{
+        // Ab mujh agar course create krna hoga,to mujhe ky ky chize ki need padegi.
             //Steps
             //1.maine bola saare data laa kar do ...request ki body se
             //2. mujhe to thumbnail image bhi chahiye hoga 
@@ -142,7 +155,7 @@ exports.createCourse = async (req, res) => {
     }
 }  
 
-
+// STEP :05
 //2.Get All Courses Handler Function 
 exports.ShowAllCourses = async (req, res) => {
 
