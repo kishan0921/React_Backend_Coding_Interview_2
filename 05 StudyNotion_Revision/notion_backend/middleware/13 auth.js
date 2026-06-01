@@ -32,19 +32,29 @@ exports.auth = async (req, res, next) => {
         // Auth block ke ander aap authentication check krte the,
         // authentication kaise check hoti thi.?
         //aap json web token verify krte the.
+        // aap json web token send krte the, and verify krte the,ki
+        // token sahi hai ya galat, hume token sahi milta tha to thik ni to hum bhaga dete the.
 
-        // auth verify krne ke liye aap authentication check krte the
-        // auth check krne ke liye aap Json web token verify krte the
-        //aapko json web token mil jaata tha to done.. well good nahi to aap bhaaga dete the
-        //Now,question hai aap token kaha se milega? 
-        // 1. Cookie me se, 
-        // 2.body me se, and  (ye method avoid krna hai)
-        // 3.bearer token me se  (Best tarika)
+        // Ab token milne ke 3 tarike humne aapko sikhaye the?
+        // 01 aap token extract kr skte ho, cookiee me se
+        // 02 body me se, and  (ye method avoid krna hai)
+        // 03 bearer token me se  (Best tarika)
 
-        // extract token
+        // and kon sa tarika hume jaada avoid krna hai (method 02)
+
+
+        // STEP :03.1
+        //to hume extract kiya token
+        // ya to "req.cookies.token" yaha se milega nahi to "req.body.token"
+        // yaha se milega.
+        // fir "req.header" me 'Authorization' likha hua milega key me.
+        // then issko hum replace kr denge.("Bearer ","") "Bearer and space ko replace kr denge empty string se to 
+        // hume token mil jaayega."
         const token = req.cookies.token 
                     || req.body.token 
                     || req.header("Authorization").replace("Bearer ","");
+        
+        // STEP : 03.2
         // maine bola if token is missing, then return response
         if(!token){
             return res.status(401).json({
@@ -55,8 +65,13 @@ exports.auth = async (req, res, next) => {
             });
         }
 
-        // verify the token - kaise? verify method using secret key
+        // STEP :03.3
+        // ab agla kaam h, humara verify the token - kaise? 
+        // Using verify method JWT_secret key and ye mujhe .env file se mil jaayegi.
+        // hume verify krna hai, to humne ek try-catch block bana diya.
         try{
+            // verify() method ka hume use krte the, 
+            // and ussme hum tokeen pass krte hai and JWT_Secreate ko decode krke verify krte hai.
             const decode = jwt.verify(token, process.env.JWT_SECRET);
             // now decode code print kr dete hai
             console.log(decode);
@@ -70,6 +85,7 @@ exports.auth = async (req, res, next) => {
             });
         }
 
+        // STEP :03.4
         // then hum next middle ware pe chale jaayenge
         next();
 
@@ -85,7 +101,11 @@ exports.auth = async (req, res, next) => {
 }
 
 
+// STEP : 04
+// AB chalte h humari next middle ware ke upar.
+
 // 2. isStudent 
+//isStudent naam se humne apna ek middleware start kr diya hai.
 // chalo isStudent handler function start krte hai
 
 exports.isStudent = async (req, res, next) => {
