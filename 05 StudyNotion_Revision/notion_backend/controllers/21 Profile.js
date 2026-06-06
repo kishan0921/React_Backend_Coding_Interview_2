@@ -1,5 +1,6 @@
 
 
+// STEP :01
 // Profile ka model import kr lete hai kyuki use hone waala hai
 const Profile = require("../models/Profile");
 
@@ -7,7 +8,10 @@ const Profile = require("../models/Profile");
 const User = require("../models/User");
 
 
+//STEP: 02
+// Create profil ki need nahi hai, kyuki already profile bani hai.
 
+// STEP :03
 // 1.Update Profile Handler Function
 // Pura ka pura logic kisi bhi profile ki detail update krne ke liye
 exports.updateProfile = async (req, res) => {
@@ -84,6 +88,7 @@ exports.updateProfile = async (req, res) => {
 }
 
 
+// STEP :04
 // 2. deleteAccount  Handler Function
 // H.w - FindPout on Internet (What is cron job)
 exports.deleteAccount = async (req, res) => {
@@ -138,7 +143,7 @@ exports.deleteAccount = async (req, res) => {
         }
 }
 
-
+// STEP :05 
 // 3. getAllUserDetails Handler Function
 exports.getAllUserDetails = async (req, res) => {
     try{

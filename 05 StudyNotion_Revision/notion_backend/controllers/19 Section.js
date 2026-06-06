@@ -5,6 +5,7 @@ const Section = require("../models/Section");
 const Course = require("../models/Course");
 
 
+// STEP 01:
 //1.CreateSection Handler Function that will be sync
 exports.createSection = async (req, res) => {
 
@@ -72,7 +73,7 @@ exports.createSection = async (req, res) => {
 }
 
 
-
+// STEP 02:
 //2. Update Section Handler Function 
 exports.updateSection = async (req, res) => {
 
@@ -123,7 +124,7 @@ exports.updateSection = async (req, res) => {
 }
 
 
-
+// STEP 03:
 //3. Detele Section Handler Function (jo ki last section hai)
 exports.deleteSection = async (req, res) => {
 

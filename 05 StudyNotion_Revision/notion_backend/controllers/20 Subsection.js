@@ -1,10 +1,20 @@
 
+
+// STEP :01
+// sabse pehle to mujhe subsection model ki need honi waali hai.
+// Kyuki issi model ka use krke hum apna data enter krenge.
 // Subsection waala model import kr lete hai 
 const SubSection = require("../models/SubSection");
 
+
+
+// Ab mujhe section ki need padne waali hai, kyuki sectio ki id mai use karunga subsection me.
 // Section waala model import kr lete hai 
 const Section = require("../models/Section");
 
+
+
+//STEP :02
 //1.CreateSubSection Handler Function that will be sync
 exports.createSubSection = async (req, res) => {
     try{
