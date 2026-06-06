@@ -2,6 +2,7 @@
 // Firstly, Install razorpay package using npm 
 
 
+// STEP :01
 // ab mujhe instance nikalna hai, to destructure krke mujhe instance mil jayega
 const { instance } = require("../config/razorpay");
 
@@ -19,6 +20,7 @@ const User = require("../models/User");
 
 
  
+// STEP :02
  // 1.Capture the payment and initiate the Razorpay order (Mujhe payment capture krna hai 
 exports.capturePayment = async (req, res) => {
         //  steps
@@ -158,6 +160,7 @@ exports.capturePayment = async (req, res) => {
 
 
 
+// STEP :03
 // But Abhi Payment Complete thodi hui h,
 // 1. ke baad payment sirf create/captuing hui h, Authorized thodi hui payment ki
 // 2. Verify Signature of Razorpay and Server (2nd handler Function)
