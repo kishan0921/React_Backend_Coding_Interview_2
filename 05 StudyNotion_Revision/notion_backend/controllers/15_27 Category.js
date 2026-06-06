@@ -97,8 +97,11 @@ exports.getAllTags = async (req, res) => {
 
 
 // STEP :10 -- Baad me First Go to "16 Course.js"
-// 3. CategoryPageDetails handler function 
 
+
+
+// STEP :11 (Video - 91 me)
+// 3. CategoryPageDetails handler function 
 exports.categoryPageDetails = async (req, res) => {
 
     try{

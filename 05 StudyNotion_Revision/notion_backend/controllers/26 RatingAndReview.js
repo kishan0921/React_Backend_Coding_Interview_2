@@ -7,6 +7,7 @@ const RatingAndReview = require("../models/RatingandReview");
 const Course = require("../models/Course");
 
 
+// STEP 01
 //1. Create Rating and Review Handler Function 
 // createRating
 exports.createRating = async (req, res) => {
@@ -110,6 +111,8 @@ exports.createRating = async (req, res) => {
 
 }
 
+
+// STEP :02
 // 2.Average Rating Handler Function  (Aap Aggregatio Sikhenge- NewConcept)
 exports.getAverageRating = async (req, res) => {
  
@@ -177,7 +180,7 @@ exports.getAverageRating = async (req, res) => {
     }
 } 
 
-
+// STEP :03
 //3.Get All Rating and Review Handler Function 
 // getAllRatingAndReview
 exports.getAllRatingReview = async (req, res) => {

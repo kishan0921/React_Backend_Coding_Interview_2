@@ -211,7 +211,7 @@ exports.ShowAllCourses = async (req, res) => {
 
 
 
-// Lec -91 me 
+// Lec -91 me  (5:45 sec)
 //3. get Course Details Handler Function 
 exports.getCourseDetails = async (req, res) => {
     try{
