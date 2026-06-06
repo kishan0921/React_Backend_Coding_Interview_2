@@ -1,5 +1,6 @@
 import "./App.css";
 
+// STEP 01: 
 // aao Routes ko import kar lete hai
 import { Route, Routes } from "react-router-dom";
 
@@ -12,6 +13,7 @@ function App() {
       <div className="w-screen min-h-screen bg-richblack-900 flex flex-col font-inter">
         <NavBar />
 
+        {/* STEP : 02  */}
         {/* Div ke ander.. maine bola Routes create krne h */}
         <Routes>
         {/* Route ke ander...humne single Route create kr diya */}
