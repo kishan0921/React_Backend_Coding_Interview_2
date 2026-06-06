@@ -323,7 +323,8 @@ const Home = () => {
 
 
 
-{/* Section 2 */}
+            {/* Section 2 */}
+            
         <div className="bg-pure-greys-5 text-richblack-700">
             <div className="homepage_bg h-[320px]">
             {/* Explore Full Catagory Section */}
