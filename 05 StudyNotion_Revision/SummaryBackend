@@ -2,8 +2,19 @@
 Note: read From Downside 
 Note: This Include ProjectFlow File Dexcription Also in Steps
 
-Step 05:
+Step 05:  till here total 29 Files  - done and 1 cloudindar not mappeds
 Video no : 92 Mega Backend Class 7
+
+Note: Already added files form Love Babber
+
+routes/
+
+Course.js
+Payment.js
+Profile.js
+User.js
+Contact - not using in index 
+
 Step 05:s
 Index.js  (Jitne bhi routes hai sbb listed kr hoga)
 

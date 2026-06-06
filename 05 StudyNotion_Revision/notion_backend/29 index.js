@@ -1,5 +1,6 @@
 
 
+// STEP 01:
 // Chalo express le aate hai 
 const express = require("express");
 
@@ -7,6 +8,7 @@ const express = require("express");
 const app = express();
 
 
+// STEP :02
 // Ab Saare ke Saare route import krte hai 
 const userRoutes = require("./routes/User");
 const profileRoutes = require("./routes/Profile");
@@ -15,10 +17,13 @@ const courseRoutes = require("./routes/Course");
 // const contactUsRoute = require("./routes/Contact");
 
 
+// STEP :03
 // database waali chiz import krte hai 
 const database = require("./config/database");
 const cookieParser = require("cookie-parser"); // and make sure kro cookie-parser install ho
 
+
+// STEP 04:
 // Hum chahte hai frontend host : 300 and Backend host : 4000 pe chale .
 // And mai Chahta hu mera Backend jo hai wo Frontend ko access kr sake 
 const cors = require("cors"); // and make sure kro ki cors install ho
@@ -34,6 +39,8 @@ const dotenv = require("dotenv"); // and make sure kro ki dotenv install ho
 // jo bhi mera .env file hai wo sabkuch load kr lo
 dotenv.config();
 
+
+// STEP :05
 // port number nikal lo 
 const PORT = process.env.PORT || 4000; // port se aayega ...nahi to 4000 pe run krega
 
@@ -54,6 +61,8 @@ app.use(
 	})
 )
 
+
+// STEP : 06
 // Ek aur middleware add krte hai 
 app.use(
 	fileUpload({
@@ -65,6 +74,8 @@ app.use(
 // cloudinary se connection bhi krna hai
 cloudinaryConnect();
 
+
+// STEP :07
 // routes ko use krte hai  (Sare routes ko mount kr diya)
 app.use("/api/v1/auth", userRoutes);
 app.use("/api/v1/profile", profileRoutes);
@@ -73,6 +84,7 @@ app.use("/api/v1/payment", paymentRoutes);
 // app.use("/api/v1/reach", contactUsRoute);	
 
 
+// STEP :08
 // det route (Jab ye "/" default route pe aayega to ye message show ho jaayega )
 app.get("/", (req, res) => {
 	return res.json({
