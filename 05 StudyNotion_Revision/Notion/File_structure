@@ -2,6 +2,20 @@
 
 
 
+Video 97  - Done
+
+39 Notion/src/pages/39 VerifyEmail.jsx
+Notion/src/services/operations/authAPI.js (resetPassword) 
+38 Notion/src/pages/38 UpdatePassword.jsx
+37 [Auto_Added]Notion/src/services/operations/authAPI.js (getPasswordResetToken) 
+36 Notion/src/pages/36 ForgotPassword.jsx
+35 Notion/src/pages/35 Error.jsx
+34 [Auto_Added]Notion/src/pages/34 Signup.jsx
+33 [Auto_Added]Notion/src/services/operations/authAPI.js
+32 [Auto_Added]Notion/src/components/core/Auth/32 LoginForm.jsx
+31 [Auto_Added]Notion/src/components/core/Auth/31 Template.jsx
+30 [Auto_Added]Notion/src/pages/30 Login.jsx
+
 video 96 DOnee 
 
 29 StudyNotion_Revision/Notion/src/.env
