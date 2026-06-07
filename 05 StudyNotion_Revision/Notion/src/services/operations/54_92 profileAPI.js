@@ -65,6 +65,7 @@ export async function getUserEnrolledCourses(token) {
   return result
 }
 
+// Video no : 109 this function code written
 export async function getInstructorData(token) {
   const toastId = toast.loading("Loading...");
   let result = [];

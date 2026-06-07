@@ -1,5 +1,17 @@
 
 
+Video - 109 Done
+93 Notion/src/components/core/Dashboard/InstructorDashboard/93 InstructorChart.jsx
+92 Notion/src/services/operations/54_92 profileAPI.js (getInstructorData)
+
+91 Notion/src/components/core/Dashboard/InstructorDashboard/91 Instructor.jsx
+
+
+
+Video - 108 - Done
+
+90 Notion/src/components/common/90 ReviewSlider.jsx
+89 [Already_created]Notion/src/slices/89 viewCourseSlice.js
 
 
 
