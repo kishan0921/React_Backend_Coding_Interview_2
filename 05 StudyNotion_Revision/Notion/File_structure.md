@@ -4,6 +4,11 @@
 
 
 
+Video - 106  - Done
+84 Notion/src/components/core/Course/84 CourseDetailsCard.js
+
+05 Notion/src/pages/82 CourseDetails.jsx
+
 
 Video - 105 (Payment Integration - Soo Important)
 Note: Mostly we update backend codes also.
