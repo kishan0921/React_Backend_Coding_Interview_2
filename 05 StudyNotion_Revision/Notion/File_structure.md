@@ -5,6 +5,14 @@
 
 
 
+Video - 105 (Payment Integration - Soo Important)
+Note: Mostly we update backend codes also.
+
+83 Notion/src/services/operations/83 studentFeaturesAPI.js
+82 Notion/src/pages/82 CourseDetails.jsx
+
+24 [Update_Code]notion_backend/controllers/24 Payments.js
+
 
 Video - 104 - Done
 
