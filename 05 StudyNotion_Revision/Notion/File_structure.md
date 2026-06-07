@@ -3,6 +3,22 @@
 
 
 
+
+
+
+Video - 104 - Done
+
+81 Notion/src/components/core/Catalog/81 CourseSlider.jsx
+80 Notion/src/components/core/Catalog/80 Course_Card.jsx
+
+79 Notion/src/services/operations/79 pageAndComponentData.js
+78 Notion/src/pages/78 Catalog.jsx
+77 [Auto_Added]Notion/src/components/common/77 RatingStars.jsx
+76 [Auto_Added]Notion/src/utils/76 avgRating.js
+75 [Auto_Added]Notion/src/utils/75 dateFormatter.js
+74 [Auto_Added]Notion/src/services/74 formatDate.js
+
+
 Video - 103 Done
 
 73 Notion/src/components/core/Dashboard/EditCourse/73 index.js
