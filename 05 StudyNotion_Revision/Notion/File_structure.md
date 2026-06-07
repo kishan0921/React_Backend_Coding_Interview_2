@@ -3,6 +3,13 @@
 
 
 
+Video - 107 - Done
+
+88 Notion/src/components/core/ViewCourse/88 CourseReviewModal.jsx
+87 Notion/src/components/core/ViewCourse/87 VideoDetails.jsx
+86 Notion/src/components/core/ViewCourse/86 VideoDetailsSidebar.jsx
+85 Notion/src/pages/85 ViewCourse.jsx
+
 
 Video - 106  - Done
 84 Notion/src/components/core/Course/84 CourseDetailsCard.js
