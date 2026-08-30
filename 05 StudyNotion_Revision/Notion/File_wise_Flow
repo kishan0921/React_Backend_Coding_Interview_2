@@ -1,0 +1,101 @@
+END :)
+
+Note: 14 files are not provided labels
+total = 93 + 14 = 104 Files (some repeated as well)
+
+93 src/components/core/Dashboard/InstructorDashboard/93 InstructorChart.jsx
+92 src/services/operations/54_92 profileAPI.js (getInstructorData)
+91 src/components/core/Dashboard/InstructorDashboard/91 Instructor.jsx
+90 src/components/common/90 ReviewSlider.jsx
+89 [Already_created]src/slices/89 viewCourseSlice.js
+88 src/components/core/ViewCourse/88 CourseReviewModal.jsx
+87 src/components/core/ViewCourse/87 VideoDetails.jsx
+86 src/components/core/ViewCourse/86 VideoDetailsSidebar.jsx
+85 src/pages/85 ViewCourse.jsx
+84 src/components/core/Course/84 CourseDetailsCard.js
+05 src/pages/82 CourseDetails.jsx
+83 src/services/operations/83 studentFeaturesAPI.js
+82 src/pages/82 CourseDetails.jsx
+24 [Update_Code]notion_backend/controllers/24 Payments.js
+81 src/components/core/Catalog/81 CourseSlider.jsx
+80 src/components/core/Catalog/80 Course_Card.jsx
+79 src/services/operations/79 pageAndComponentData.js
+78 src/pages/78 Catalog.jsx
+77 [Auto_Added]src/components/common/77 RatingStars.jsx
+76 [Auto_Added]src/utils/76 avgRating.js
+75 [Auto_Added]src/utils/75 dateFormatter.js
+74 [Auto_Added]src/services/74 formatDate.js
+73 src/components/core/Dashboard/EditCourse/73 index.js
+72 src/components/core/Dashboard/InstructorCourses/72 CoursesTable.jsx
+71 src/components/core/Dashboard/56 EnrolledCourses.jsx
+70 src/components/core/Dashboard/AddCourse/70_60 index.jsx
+69 src/services/operations/69 courseDetailsAPI.js
+68 src/components/core/Dashboard/AddCourse/CourseBuilder/68 SubSectionModal.jsx
+67 src/components/core/Dashboard/AddCourse/CourseBuilder/67 NestedView.jsx
+66 src/components/core/Dashboard/AddCourse/CourseBuilder/66 CourseBuilderForm.jsx
+65 [Auto_Added_Homework]src/components/core/Dashboard/AddCourse/65 Upload.jsx
+64 [Auto_Added_Homework]src/components/core/Dashboard/AddCourse/CourseInformation/64 ChipInput.jsx
+63 src/components/core/Dashboard/AddCourse/CourseInformation/63 RequirementField.jsx
+62 src/components/core/Dashboard/AddCourse/CourseInformation/62 CourseInformationForm.jsx
+61 src/components/core/Dashboard/AddCourse/61 RenderSteps.jsx
+60 src/components/core/Dashboard/AddCourse/60 index.jsx
+59 src/components/core/Dashboard/Cart/59 RenderTotalAmount.jsx
+58 src/components/core/Dashboard/Cart/58 RenderCartCourses.jsx
+57 src/components/core/Dashboard/Cart/57 index.jsx
+56 src/components/core/Dashboard/56 EnrolledCourses.jsx
+55 [Auto_Added]src/services/operations/55 SettingsAPI.js
+54 [Auto_Added]src/services/operations/54 profileAPI.js
+53 [Auto_Added]src/components/core/Dashboard/53 Settings
+52 src/components/core/Auth/52 PrivateRoute.jsx
+51 src/components/core/Dashboard/51 MyProfile.jsx
+50 src/components/common/50 IconBtn.jsx
+49 src/components/common/47 ConfirmationModal.jsx
+48 src/components/core/Dashboard/47 SidebarLink.jsx
+47 src/components/core/Dashboard/46 Sidebar.jsx
+46 src/pages/46 Dashboard.jsx
+45 src/components/ContactPage/45 ContactUsForm.jsx
+44 src/components/core/AboutPage/44 ContactFormSection.jsx
+43 src/components/core/AboutPage/43 LearningGrid.jsx
+42 src/components/core/AboutPage/42 Stats.jsx
+41 src/components/core/AboutPage/41 Quote.jsx
+40 src/pages/About.jsx
+39 src/pages/39 VerifyEmail.jsx
+src/services/operations/authAPI.js (resetPassword)
+38 src/pages/38 UpdatePassword.jsx
+37 [Auto_Added]src/services/operations/authAPI.js (getPasswordResetToken)
+36 src/pages/36 ForgotPassword.jsx
+35 src/pages/35 Error.jsx
+34 [Auto_Added]src/pages/34 Signup.jsx
+33 [Auto_Added]src/services/operations/authAPI.js
+32 [Auto_Added]src/components/core/Auth/32 LoginForm.jsx
+31 [Auto_Added]src/components/core/Auth/31 Template.jsx
+30 [Auto_Added]src/pages/30 Login.jsx
+29 src/.env
+28_18_24_ src/components/common/18_24_28 Navbar.jsx (Login/Signup/DashBoard)
+27 src/services/27 apis.js
+26 src/services/26 apiconnector.js
+25 src/components/core/Auth/25 ProfileDropDown.jsx
+24 src/components/common/18_24 Navbar.jsx (Login/Signup/DashBoard)
+23 src/slices/23 cartSlice.js
+22 src/slices/22 profileSlice.js
+21 src/slices/21 authSlice.js (now, we need slices)
+20 src/reducer/20 index.js (Store -done, then reducer we need)
+19 src/05 index.js (Store and Reducer concept added)
+18 src/components/common/18 Navbar.jsx
+17 src/components/core/HomePage/17 ExploreMore.jsx
+16 [Auto_Added]src/components/common/16 Footer.jsx
+15 src/components/core/HomePage/15 InstructorSection.jsx
+14 src/components/core/HomePage/14 LearningLanguageSection.jsx
+13 src/components/core/HomePage/13 TimelineSection.jsx
+12_08 src/08 App.css
+11 src/components/core/HomePage/11 CodeBlocks.jsx
+10 src/components/core/HomePage/10 Button.jsx
+09 src/components/core/HomePage/09 HighlightText.jsx
+08 src/08 App.css
+07 src/pages/07 Home.jsx (93 Video)
+06 src/06 App.js
+05 src/05_19 index.js
+04 [Auto_added] package.json
+03 [Auto_added] tailwind.config.js
+02 [Auto_added] data
+01 [Auto_added] assets

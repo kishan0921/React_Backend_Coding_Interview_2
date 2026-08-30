@@ -162,3 +162,10 @@ Video 93 End
 08 Notion/src/08 App.css
 07 Notion/src/pages/07 Home.jsx  93 Video
 
+05 StudyNotion_Revision/Notion/src/06 App.js
+05 StudyNotion_Revision/Notion/src/05_19 index.js
+05 StudyNotion_Revision/Notion/04[Auto_added] package.json
+05 StudyNotion_Revision/Notion/03[Auto_added] tailwind.config.js
+
+05 StudyNotion_Revision/Notion/src/02[Auto_added] data
+05 StudyNotion_Revision/Notion/src/01[Auto_added] assets
