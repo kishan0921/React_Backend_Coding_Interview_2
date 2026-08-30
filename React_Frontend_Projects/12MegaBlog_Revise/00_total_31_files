@@ -1,0 +1,38 @@
+09_31 main.jsx
+
+pages\30 Post.jsx-copy-paste
+pages\29 Home.jsx
+pages\28 EditPost.jsx
+pages\27 AllPosts.jsx
+pages\26 AddPost.jsx
+pages\25 Login.jsx-Skip
+pages\24 Signup.jsx-Skip
+
+components\post-form\23 PostForm.jsx
+components\22 RTE.jsx
+components\21 AuthLayout.jsx
+components\20 Signup.jsx
+components\19 Login.jsx
+components\18 PostCard.jsx
+components\17 Select.jsx
+components\16 input.jsx
+components\15 Button.jsx
+
+components\Header\14 Header.jsx
+components\Header\13 LogoutBtn.jsx
+components\12 Logo.jsx
+components\Footer\11 [skip]Footer.jsx
+components\container\10 Container.jsx
+
+09_31 main.jsx
+
+08.2 index.css
+08.1 TailwindInstall.txt
+08 App.jsx
+components\07 index.js
+store\06 authSlice.js
+store\05 store.js
+appwrite\04 config.js
+appwrite\03 auth.js
+conf\02 conf.js
+src\01 .env.sample
