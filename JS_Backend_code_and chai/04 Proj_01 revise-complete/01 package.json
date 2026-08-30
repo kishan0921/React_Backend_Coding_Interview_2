@@ -18,7 +18,45 @@
     "nodemon": "^3.1.10",
     "prettier": "^3.0.3"
   },
-  "dependencies": {
+
+// Question : Difference between Peer,dev, dependencies ?
+
+// 01- dependencies 
+// are the packages required by the application to run and provide its actual features.
+// In detail:
+// dependencies-> Dependencies are the packages that an application directly depends on to provide its actual functionality at runtime.
+// In a React project, packages such as React, React DOM, Axios, and React Router are typically added to dependencies because the application uses them while running.
+
+// For example, if our e-commerce application uses Axios to call product APIs or React Router to navigate between Products, Cart, and Profile pages, the application depends on these packages for its functionality.
+  
+
+// 02- devDependencies are the packages required to develop, test, and build the application.
+// In Detail:
+// DevDependencies are the packages that the project depends on during development, testing, linting, or the build process, but they are generally not required by the application for its normal runtime functionality.
+
+// For example, Vite can be used to run and build the React application, ESLint can be used to identify code-quality issues, and Jest can be used for testing.
+
+// These packages help developers develop, validate, test, and build the application, rather than providing the application's business functionality directly.
+
+// 03-peerDependencies
+// In simple terms:
+// peerDependencies tell a library which packages it expects the consuming application to provide, mainly to maintain compatibility.
+
+// In Long :
+// PeerDependencies are mainly used when developing reusable libraries or packages. They specify packages that the library requires and expects the consuming application to provide.
+// For example, suppose we create a reusable React UI library containing components such as Button, Modal, and Dropdown. Since these components are built using React, the library requires a compatible version of React.
+// Instead of the UI library installing and managing its own separate React version, it can specify React as a peerDependency. This tells the consuming application:
+// "My library requires a compatible version of React, so your application should already provide that dependency."
+
+// For example:
+// "peerDependencies": {
+//   "react": ">=18",
+//   "react-dom": ">=18"
+// }
+// This helps the library work with the React version already being used by the application and reduces the possibility of version conflicts or multiple copies of the same dependency.
+
+
+"dependencies": {
     "bcrypt": "^5.1.1",
     "cloudinary": "^1.41.3",
     "cookie-parser": "^1.4.7",
