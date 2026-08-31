@@ -21,7 +21,11 @@ const connectDB = async () => {
     // then 2nd variable - DB_NAME - jo ki constants.js se import kiya
     // 'connectionInstance'variable name - ek response aa raha hai, jo ki connection instance me hum hold kar rahe h
     // {} - mongoose ka empty object pass kr rahe hai hai, as mongoose ke connect() method ke liye. 
-    // Note: {} empty object me , hum like --serverSelectionTimeoutMS: 5000, maxPoolSize: 10 ye sab use kr skte hai extra condition/ fucntionality.
+    // Note: {} empty object me , Example -> serverSelectionTimeoutMS: 5000,
+        maxPoolSize: 10
+    // serverSelectionTimeoutMS → connection timeout
+    //maxPoolSize              → connection pool ki maximum size
+     //ye sab use kr skte hai extra condition/ fucntionality.
     const connectionInstance = await mongoose.connect(
       `${process.env.MONGO_URI}/${DB_NAME}`,
       {}
