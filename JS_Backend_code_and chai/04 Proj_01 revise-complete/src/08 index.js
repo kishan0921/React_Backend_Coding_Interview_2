@@ -73,6 +73,9 @@ connectDB()
 
 // Note: 5:10:00 Ye Approach 01 accha hai, but humne thoda index.jsx code
 //zaada polluted kr liya hai. (long line of code)
+
+
+
 // STEP : 02
 // Approach 01: Using IIFE (Immediately Invoked Function Expression) to handle async/await
 /*  - Approach 01:
@@ -92,58 +95,58 @@ const app = express();
 // import express from "express";
 // const app = express();
 
-// // STEP 03:
-// // Chahiye async await le lete hai.
-// (async () => {
-//   // Now, ab database ko kaise connect kroge
-//   // wohii try-catch
-//   // Jab bhi database se connect kro, try-catch use kro hmesha
-//   try {
-//     // STEP : 05
-//     // Error part to hogayha hai.
-//     // ab agar sab kuch thik hai, Then
-//     // ye apne jo mongoose liya hai, wo aapko de dega connect()
-//     // and connect krne ke liye backticks bhi to dena hoga.
-//     // ${process.env.MONGO_URI} - ittna se database connect ho jaayega.
-//     // but itne se kaam ni hoga.
-//     // /${DB_NAME} - se hume database ka name bhi dena hota hai.
-//     // Ab ek kaam jo 100% krna hoga wo h, "await"
-//     await mongoose.connect(`${process.env.MONGO_URI}/${DB_NAME}`);
+// STEP 03:
+// Chahiye async await le lete hai.
+(async () => {
+  // Now, ab database ko kaise connect kroge
+  // wohii try-catch
+  // Jab bhi database se connect kro, try-catch use kro hmesha
+  try {
+    // STEP : 05
+    // Error part to hogayha hai.
+    // ab agar sab kuch thik hai, Then
+    // ye apne jo mongoose liya hai, wo aapko de dega connect()
+    // and connect krne ke liye backticks bhi to dena hoga.
+    // ${process.env.MONGO_URI} - ittna se database connect ho jaayega.
+    // but itne se kaam ni hoga.
+    // /${DB_NAME} - se hume database ka name bhi dena hota hai.
+    // Ab ek kaam jo 100% krna hoga wo h, "await"
+    await mongoose.connect(`${process.env.MONGO_URI}/${DB_NAME}`);
 
-//     // STEP : 07
-//     // "app" initialize krne ke baad.
-//     // next line aap dekhoge listener bhi dikhte hai.
-//     // and listener hote hai, "app" ke pass
-//     // bahut saare listener hai, ussme se ek hai "error" event
-//     // "error" event ? why we are using this
-//     // Answer :- Jo skta hai ki humari app database se connect
-//     //ho chuka hai, But kya pata humari express ki app hai, wo baat ni kr
-//     // paa rahi hai.
-//     // to ye raha appne ek callback "()=>{}" laaga diya
-//     // also (err) - error yaha receive bhi to krna hoga, obviously h
-//     app.on("error", (err) => {
-//       // STEP : 08
-//       // then aapne ke message bhi pass kr diya. ki "server error hai"
-//       console.error("Server error:", err);
-//       // then, aap chaho to error throw bhi kr skte ho.
-//       // ki jab aap baat hi ni kr skte to error throw hi kr do.
-//       // then, error uppar receive bhi to krna hoga, obviously h
-//       throw err;
-//     });
+    // STEP : 07
+    // "app" initialize krne ke baad.
+    // next line aap dekhoge listener bhi dikhte hai.
+    // and listener hote hai, "app" ke pass
+    // bahut saare listener hai, ussme se ek hai "error" event
+    // "error" event ? why we are using this
+    // Answer :- Jo skta hai ki humari app database se connect
+    //ho chuka hai, But kya pata humari express ki app hai, wo baat ni kr
+    // paa rahi hai.
+    // to ye raha appne ek callback "()=>{}" laaga diya
+    // also (err) - error yaha receive bhi to krna hoga, obviously h
+    app.on("error", (err) => {
+      // STEP : 08
+      // then aapne ke message bhi pass kr diya. ki "server error hai"
+      console.error("Server error:", err);
+      // then, aap chaho to error throw bhi kr skte ho.
+      // ki jab aap baat hi ni kr skte to error throw hi kr do.
+      // then, error uppar receive bhi to krna hoga, obviously h
+      throw err;
+    });
 
-//     //STEP 09
-//     // Now, agar app baat kr paa raha h, then hum listen kr dete hai.
-//     // 1st - port le lo
-//     // 2nd - ek callback le lo
-//     app.listen(process.env.PORT, () => {
-//       // ${process.env.PORT} - Variable inject kar diye
-//       console.log(`Server is running on port ${process.env.PORT}`);
-//     });
-//     // STEP : 04
-//     // Catch ke ander humne apna error daal diya
-//   } catch (error) {
-//     // and aap chaho to ek message bhi send kr skte ho.
-//     console.error("Error connecting to MongoDB:", error);
-//     throw error;
-//   }
-// })();
+    //STEP 09
+    // Now, agar app baat kr paa raha h, then hum listen kr dete hai.
+    // 1st - port le lo
+    // 2nd - ek callback le lo
+    app.listen(process.env.PORT, () => {
+      // ${process.env.PORT} - Variable inject kar diye
+      console.log(`Server is running on port ${process.env.PORT}`);
+    });
+    // STEP : 04
+    // Catch ke ander humne apna error daal diya
+  } catch (error) {
+    // and aap chaho to ek message bhi send kr skte ho.
+    console.error("Error connecting to MongoDB:", error);
+    throw error;
+  }
+})();
