@@ -20,10 +20,12 @@ const connectDB = async () => {
     // then 1st variable - ${process.env.PORT} - Variable inject kar diye
     // then 2nd variable - DB_NAME - jo ki constants.js se import kiya
     // 'connectionInstance'variable name - ek response aa raha hai, jo ki connection instance me hum hold kar rahe h
+    // {} - mongoose ka empty object pass kr rahe hai hai, as mongoose ke connect() method ke liye. 
+    // Note: {} empty object me , hum like --serverSelectionTimeoutMS: 5000, maxPoolSize: 10 ye sab use kr skte hai extra condition/ fucntionality.
     const connectionInstance = await mongoose.connect(
       `${process.env.MONGO_URI}/${DB_NAME}`,
       {}
-    );
+    );    
     // and then, print bhi rk do message "MongoDB connect hogaya h"
     console.log(
       `\n MongoDB connected !! DB HOST: ${connectionInstance.connection.host}`
